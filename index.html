@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ABHI To-Do Lists :)</title>
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyADCebW1l-aRKuSfEaem5pighhXlqRAcD8",
+      authDomain: "abhi-todo-18ea8.firebaseapp.com",
+      projectId: "abhi-todo-18ea8",
+      storageBucket: "abhi-todo-18ea8.appspot.com",
+      messagingSenderId: "888112447550",
+      appId: "1:888112447550:web:566d51b8dd8622cf01516f",
+      measurementId: "G-GKNS16DX4K"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+  </script>
+</head>
+
+<body>
+  <header>
+    <h1><span class="pysat-text">PySat</span>🪐 To-Do</h1>
+    <div class="auth-buttons">
+      <button onclick="showLogin()">Login</button>
+      <button onclick="showRegister()">Register</button>
+      <button onclick="logout()" id="logout-btn" style="display:none;">Logout</button>
+    </div>
+  </header>
+
+  <main class="columns" id="todo-container" style="display:none;">
+    <section>
+      <h2>Urgent</h2>
+      <input id="urgent-input" placeholder="Add urgent task...">
+      <button onclick="addTask('urgent')">Add</button>
+      <ul id="urgent-list"></ul>
+    </section>
+    <section>
+      <h2>Tasks</h2>
+      <input id="tasks-input" placeholder="Add task...">
+      <button onclick="addTask('tasks')">Add</button>
+      <ul id="tasks-list"></ul>
+    </section>
+    <section>
+      <h2>Goals</h2>
+      <input id="goals-input" placeholder="Add goal...">
+      <button onclick="addTask('goals')">Add</button>
+      <ul id="goals-list"></ul>
+    </section>
+  </main>
+
+  <!-- Login/Register Popup -->
+  <div id="auth-popup" class="popup" style="display: none;">
+    <div class="popup-content">
+      <span class="close-btn" onclick="closePopup()">&times;</span>
+      <h2 id="popup-title">Login</h2>
+      <input type="email" id="auth-email" placeholder="Email" />
+      <input type="password" id="auth-password" placeholder="Password" />
+      <button id="auth-action-btn" onclick="submitAuth()">Submit</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
